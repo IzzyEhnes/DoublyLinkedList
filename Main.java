@@ -223,9 +223,19 @@ public class Main
 
         while (fileReader.hasNextLine())
         {
-            String currentName = fileReader.next().trim();
+            String currentString = fileReader.next().trim();
 
-            names.add(currentName);
+            if (currentString.equals("Delete"))
+            {
+                String deleteString = fileReader.next().trim();
+
+                names.delete(deleteString);
+            }
+
+            else
+            {
+                names.add(currentString);
+            }
         }
 
         return names;
