@@ -143,6 +143,44 @@ class Doubly
 
 
 
+    void delete(String target)
+    {
+        // If head Node is to be deleted
+        if (head.getValue().equals(target))
+        {
+            Node newHead = head.getNext();
+            newHead.setPrevious(null);
+            head.setNext(null);
+            head = newHead;
+        }
+
+        // If tail Node is to be deleted
+        else if (tail.getValue().equals(target))
+        {
+            Node newTail = tail.getPrevious();
+            newTail.setNext(null);
+            tail.setPrevious(null);
+            tail = newTail;
+        }
+
+        else
+        {
+            for (Node current = head; current != null; current = current.getNext())
+            {
+                if (current.getValue().equals(target))
+                {
+                    current.getPrevious().setNext(current.getNext());
+                    current.getNext().setPrevious(current.getPrevious());
+
+                    current.setPrevious(null);
+                    current.setNext(null);
+                }
+            }
+        }
+    }
+
+
+
     void traverse()
     {
         for (Node current = head; current != null; current = current.getNext())
@@ -167,27 +205,44 @@ public class Main
         Doubly list = new Doubly();
 
         list.add("Banana");
-
         list.traverse();
 
         list.add("Durian");
-
         list.traverse();
 
         list.add("Apple");
-
         list.traverse();
 
         list.add("Fig");
-
         list.traverse();
 
         list.add("Cherry");
-
         list.traverse();
 
         list.add("Elderberry");
+        list.traverse();
 
+        list.add("Durian");
+        list.traverse();
+
+        list.delete("Apple");
+        list.traverse();
+
+        list.delete("Fig");
+        list.traverse();
+
+        list.add("Apple");
+        list.add("Fig");
+        list.traverse();
+
+        list.delete("Cherry");
+        list.traverse();
+
+        list.delete("Durian");
+        list.traverse();
+
+        list.add("Durian");
+        list.add("Cherry");
         list.traverse();
     }
 }
