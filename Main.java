@@ -78,8 +78,6 @@ class Doubly
 
     public Doubly()
     {
-        head.setPrevious(null);
-        tail.setNext(null);
     }
 
 
@@ -125,18 +123,34 @@ class Doubly
                         break;
                     }
 
-                    if (current.getValue().compareTo(newNode.getValue()) > 0 &&
-                            current.getNext().getValue().compareTo(newNode.getValue()) < 0)
+                    if (newNode.getValue().compareTo(current.getValue()) > 0 &&
+                            newNode.getValue().compareTo(current.getNext().getValue()) < 0)
                     {
                         Node temp = current.getNext();
+
                         current.setNext(newNode);
                         newNode.setPrevious(current);
                         newNode.setNext(temp);
                         temp.setPrevious(newNode);
+
+                        break;
                     }
+
                 }
             }
         }
+    }
+
+
+
+    void traverse()
+    {
+        for (Node current = head; current != null; current = current.getNext())
+        {
+            System.out.println(current.getValue());
+        }
+
+        System.out.println();
     }
 }
 
@@ -150,6 +164,30 @@ public class Main
 
     public static void main(String[] args)
     {
-        
+        Doubly list = new Doubly();
+
+        list.add("Banana");
+
+        list.traverse();
+
+        list.add("Durian");
+
+        list.traverse();
+
+        list.add("Apple");
+
+        list.traverse();
+
+        list.add("Fig");
+
+        list.traverse();
+
+        list.add("Cherry");
+
+        list.traverse();
+
+        list.add("Elderberry");
+
+        list.traverse();
     }
 }
