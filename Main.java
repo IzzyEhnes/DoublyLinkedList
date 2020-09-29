@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -199,50 +201,44 @@ class Doubly
 
 public class Main
 {
+    static Doubly readFile(String fileName)
+    {
+        Doubly names = new Doubly();
+
+        Scanner fileReader = null;
+
+        try
+        {
+            fileReader = new Scanner(new File(fileName));
+        }
+
+        catch (FileNotFoundException fileError)
+        {
+            System.out.println(String.format("There was a problem opening file \"%s\": \n\tError = %s", fileName, fileError.getMessage()));
+
+            System.out.println("Exiting program...");
+
+            System.exit(1);
+        }
+
+        while (fileReader.hasNextLine())
+        {
+            String currentName = fileReader.next().trim();
+
+            names.add(currentName);
+        }
+
+        return names;
+    }
+
+
 
     public static void main(String[] args)
     {
-        Doubly list = new Doubly();
+        String file = "/home/izzy/IdeaProjects/DoublyLinkedList/src/input.txt";
 
-        list.add("Banana");
-        list.traverse();
+        Doubly list = readFile(file);
 
-        list.add("Durian");
-        list.traverse();
-
-        list.add("Apple");
-        list.traverse();
-
-        list.add("Fig");
-        list.traverse();
-
-        list.add("Cherry");
-        list.traverse();
-
-        list.add("Elderberry");
-        list.traverse();
-
-        list.add("Durian");
-        list.traverse();
-
-        list.delete("Apple");
-        list.traverse();
-
-        list.delete("Fig");
-        list.traverse();
-
-        list.add("Apple");
-        list.add("Fig");
-        list.traverse();
-
-        list.delete("Cherry");
-        list.traverse();
-
-        list.delete("Durian");
-        list.traverse();
-
-        list.add("Durian");
-        list.add("Cherry");
         list.traverse();
     }
 }
