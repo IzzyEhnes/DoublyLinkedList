@@ -183,9 +183,21 @@ class Doubly
 
 
 
-    void traverse()
+    void traverseDescending()
     {
         for (Node current = head; current != null; current = current.getNext())
+        {
+            System.out.println(current.getValue());
+        }
+
+        System.out.println();
+    }
+
+
+
+    void traverseAscending()
+    {
+        for (Node current = tail; current != null; current = current.getPrevious())
         {
             System.out.println(current.getValue());
         }
@@ -249,6 +261,10 @@ public class Main
 
         Doubly list = readFile(file);
 
-        list.traverse();
+        list.traverseDescending();
+
+        System.out.println();
+
+        list.traverseAscending();
     }
 }
