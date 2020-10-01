@@ -188,8 +188,6 @@ class Doubly
 
         for (Node current = head; current != null; current = current.getNext())
         {
-            System.out.println(current.getValue());
-
             sb.append(current.getValue()).append('\n');
         }
 
@@ -204,8 +202,6 @@ class Doubly
 
         for (Node current = tail; current != null; current = current.getPrevious())
         {
-            System.out.println(current.getValue());
-
             sb.append(current.getValue()).append('\n');
         }
 
@@ -293,11 +289,9 @@ public class Main
 
         Doubly list = readFile(file);
 
-        list.traverseDescending();
-
+        System.out.print(list.traverseDescending());
         System.out.println("*************");
-
-        list.traverseAscending();
+        System.out.println(list.traverseAscending());
 
         writeFile(list);
     }
