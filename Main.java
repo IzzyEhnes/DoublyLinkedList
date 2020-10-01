@@ -1,3 +1,9 @@
+/**
+ * Author: Izzy Ehnes
+ * Class: CS130, Section 5
+ * Date completed: 1 October 2020
+ */
+
 import java.io.*;
 import java.util.Scanner;
 
