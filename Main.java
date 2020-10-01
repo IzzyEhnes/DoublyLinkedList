@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 
@@ -183,26 +182,34 @@ class Doubly
 
 
 
-    void traverseDescending()
+    String traverseDescending()
     {
+        StringBuilder sb = new StringBuilder();
+
         for (Node current = head; current != null; current = current.getNext())
         {
             System.out.println(current.getValue());
+
+            sb.append(current.getValue()).append('\n');
         }
 
-        System.out.println();
+        return sb.toString();
     }
 
 
 
-    void traverseAscending()
+    String traverseAscending()
     {
+        StringBuilder sb = new StringBuilder();
+
         for (Node current = tail; current != null; current = current.getPrevious())
         {
             System.out.println(current.getValue());
+
+            sb.append(current.getValue()).append('\n');
         }
 
-        System.out.println();
+        return sb.toString();
     }
 }
 
@@ -255,6 +262,31 @@ public class Main
 
 
 
+    static void writeFile(Doubly inList)
+    {
+        try
+        {
+            File file = new File("/home/izzy/IdeaProjects/DoublyLinkedList/src/output.txt");
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write(inList.traverseDescending());
+            bw.write("***********\n");
+            bw.write(inList.traverseAscending());
+
+            bw.close();
+        }
+
+        catch (Exception ex)
+        {
+            System.out.print("\nError encountered when creating file: ");
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
+
     public static void main(String[] args)
     {
         String file = "/home/izzy/IdeaProjects/DoublyLinkedList/src/input.txt";
@@ -263,8 +295,10 @@ public class Main
 
         list.traverseDescending();
 
-        System.out.println();
+        System.out.println("*************");
 
         list.traverseAscending();
+
+        writeFile(list);
     }
 }
